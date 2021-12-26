@@ -1,89 +1,101 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+		<meta charset="utf-8" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+         <title>{{ config('app.name') }} | @yield('title-tab')</title>
+		<meta name="description" content="Latest updates and statistic charts">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+		<script>
+          WebFont.load({
+            google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+          });
+		</script>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+            <link href="//www.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet" type="text/css" />
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+	        <!--begin::Base Styles -->
+            <link href="{{ asset('admin/assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('admin/assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            <!--end::Base Styles -->
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+            <!--begin::Favicon -->
+            <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+            <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+            <!--end::Favicon -->
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @notifyCss
-    @livewireStyles
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand text-white" href="{{ route('admin.dashboard') }}">
-                    Admin Dashboard
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        @livewireStyles
+        @stack('css')
+	</head>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        @auth
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ route('users.index') }}">
-                                {{ __('Admin Users') }}
-                            </a>
-                        </li>
-                        @endauth
-                    </ul>
+	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @auth
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="text-white nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+		<div class="m-grid m-grid--hor m-grid--root m-page">
+                @include('layouts.admin-header')
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('admin-logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+				<button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+					<i class="la la-close"></i>
+				</button>
 
-                                <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                            </li>
-                        @endauth
-                    </ul>
+				@include('layouts.admin-aside-menu')
+
+                <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                    <div class="m-subheader">
+                            @yield('breadcrumbs')
+                    </div>
+
+                    <div class="m-content">
+                        @yield('content')
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <main>
-            @if(session('message'))
-            <div class="mt-5 alert alert-success w-50 mx-auto alert-dismissible fade show" role="alert">
-                 {{ session('message') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            @endif
-            @yield('content')
-        </main>
-    </div>
-    <x:notify-messages />
-    @livewireScripts
-    @notifyJs
-</body>
+
+			</div>
+                @include('layouts.admin-footer')
+		</div>
+
+
+		<!-- begin::Scroll Top -->
+		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+			<i class="la la-arrow-up"></i>
+		</div>
+		<!-- end::Scroll Top -->
+
+
+	            <!--begin::Base Scripts -->
+        <script src="{{asset('admin/assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
+		<script src="{{ asset('admin/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+                <!--end::Base Scripts -->
+
+
+	            <!--begin::Dashboard Scripts -->
+        <script src="{{ asset('admin/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="{{ asset('admin/assets/app/js/dashboard.js') }}" type="text/javascript"></script>
+                <!--end::Dashboard Scripts -->
+
+        @livewireScripts
+        @stack('scripts')
+        <script>
+            function togglePassword(){
+                const t=document.getElementById("password"),e=document.getElementById("password-confirm"),p=document.getElementById("password-new");
+                t.type==="password"?t.type="text":t.type="password",e.type==="password"?e.type="text":e.type="password",p.type==="password"?p.type="text":p.type="password"}
+                function displayImage(e, display) {
+            if (e.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                document.querySelector(display).setAttribute('src', e.target.result);
+                }
+                reader.readAsDataURL(e.files[0]);
+            }
+            }
+        </script>
+	</body>
 </html>

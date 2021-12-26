@@ -14,13 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome');
 
 
 
-//Normal User Routes
+//Basic User Routes
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -80,3 +78,4 @@ Route::group(['prefix' => 'admin'], function () {
 
 //Invitation route
 Route::get('/invitation/{user}', 'Admin\AdminController@invitation')->name('invitation');
+

@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['welcome']);
     }
 
     /**
@@ -29,5 +29,10 @@ class HomeController extends Controller
     public function show()
     {
         return view('users.profile');
+    }
+
+    public function welcome()
+    {
+        return view('welcome');
     }
 }

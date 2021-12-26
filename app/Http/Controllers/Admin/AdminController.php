@@ -31,7 +31,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::where('role_id', 2)->get();
+        $admins = Admin::where('id','!=', 1)->get();
         return view('admin.users', ['admins' => $admins]);
     }
 
