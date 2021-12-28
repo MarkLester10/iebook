@@ -9,11 +9,6 @@
                             <span class="m-menu__link-text">
                                 Dashboard
                             </span>
-                            {{-- <span class="m-menu__link-badge">
-                                <span class="m-badge m-badge--danger">
-                                    2
-                                </span>
-                            </span> --}}
                         </span>
                     </span>
                 </a>
@@ -24,16 +19,16 @@
                 </h4>
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-                <a href="#" class="m-menu__link m-menu__toggle">
+            <li class="m-menu__item  m-menu__item--submenu @if(Route::is('terms.index')) m-menu__item--active @endif" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                <a href="{{ route('terms.index') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-list-2"></i>
                     <span class="m-menu__link-text">
                         Manage Terms
                     </span>
                 </a>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-                <a href="#" class="m-menu__link m-menu__toggle">
+            <li class="m-menu__item  m-menu__item--submenu  @if(Route::is('users.index')) m-menu__item--active @endif" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                <a href="{{ route('users.index') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-users"></i>
                     <span class="m-menu__link-text">
                         Users

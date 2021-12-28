@@ -1,15 +1,27 @@
-<div>
+<div class="my-3">
     <div class="card h-100">
         <div class="card-body">
           <h6 class="d-flex align-items-center mb-3"></i>Update Profile</h6>
 
           <form wire:submit.prevent="updateProfile">
             <div class="form-group">
-                <label for="name">{{ __('Name') }}</label>
+                <label for="first_name">{{ __('First Name') }}</label>
                 <div>
-                    <input id="name" wire:model="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name" autofocus>
+                    <input id="name" wire:model="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" required autocomplete="first_name" autofocus>
 
-                    @error('name')
+                    @error('first_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="last_name">{{ __('Last Name') }}</label>
+                <div>
+                    <input id="name" wire:model="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" required autocomplete="last_name" autofocus>
+
+                    @error('last_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -35,7 +47,7 @@
                 <label for="avatar">{{ __('Avatar') }}</label>
 
                 <div>
-                    <input id="avatar" wire:model="avatar" type="file" class="form-control border-0 @error('avatar') is-invalid @enderror" name="avatar" required autofocus>
+                    <input id="avatar" wire:model="avatar" type="file" class="form-control border-0 @error('avatar') is-invalid @enderror" name="avatar"  autofocus>
 
                     @error('avatar')
                         <span class="invalid-feedback" role="alert">

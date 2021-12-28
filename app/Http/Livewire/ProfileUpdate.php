@@ -12,13 +12,15 @@ class ProfileUpdate extends Component
     use WithFileUploads;
 
     public $userId;
-    public $name;
+    public $first_name;
+    public $last_name;
     public $email;
     public $avatar;
     public $provider_id;
 
 
-    public $prevName;
+    public $prevLastName;
+    public $prevFirstName;
     public $prevEmail;
     public $prevAvatar;
 
@@ -26,20 +28,23 @@ class ProfileUpdate extends Component
     {
         $this->userId = auth()->user()->id;
         $model = User::find($this->userId);
-        $this->name = $model->name;
+        $this->first_name = $model->first_name;
+        $this->last_name = $model->last_name;
         $this->email = $model->email;
         $this->avatar = $model->avatar;
         $this->provider_id = $model->provider_id;
 
-        $this->prevName = $model->name;
+        $this->prevFirstName = $model->first_name;
+        $this->prevLastName = $model->last_name;
         $this->prevEmail = $model->email;
         $this->prevAvatar = $model->avatar;
     }
 
     protected $rules = [
-        'name' => 'required|max:20',
+        'first_name' => 'required|max:20',
+        'last_name' => 'required|max:20',
         'email' => 'required|email',
-        'avatar' => 'mimes:jpeg,jpg,png,gif,svg|max:5242880'
+        'avatar' => ['nullable', 'sometimes', 'mimes:jpeg,jpg,png,gif,svg' , 'image', 'file', 'max:5242880']
     ];
 
     public function updated($propertyName)
@@ -52,11 +57,18 @@ class ProfileUpdate extends Component
         $this->validate();
         $data = [];
 
-        if ($this->name !== $this->prevName) {
+        if ($this->first_name !== $this->prevFirstName) {
             $data = array_merge($data, [
-                'name' => $this->name
+                'first_name' => $this->first_name
             ]);
         }
+
+        if ($this->last_name !== $this->prevLastName) {
+            $data = array_merge($data, [
+                'last_name' => $this->last_name
+            ]);
+        }
+
         if ($this->email !== $this->prevEmail) {
             $data = array_merge($data, [
                 'email' => $this->email

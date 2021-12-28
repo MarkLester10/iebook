@@ -2,7 +2,7 @@
 
 namespace App\Models\User;
 
-use Rackbeat\UIAvatars\HasAvatar;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasAvatar;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar',
+        'first_name','last_name', 'email', 'password', 'avatar',
     ];
 
     /**
@@ -39,23 +39,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatar($size = 64)
+    public function getCreatedAtAttribute($value)
     {
-        return $this->getGravatar($this->name, $size);
+        return Carbon::parse($value)->isoFormat('MMMM Do YYYY');
+    }
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->isoFormat('MMMM Do YYYY');
+    }
+
+
+    public function getFullName() :string
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 
     public function avatar()
     {
-        $avatar = '';
-        $imageExists = Storage::disk('local')->exists('public/avatars/' . $this->avatar);
-        if (!$imageExists && $this->provider_id) {
-            $avatar = $this->avatar;
-        } elseif ($imageExists && $this->avatar) {
-            $avatar = asset('storage/avatars/' . $this->avatar);
-        } else {
-            $avatar = $this->getUrlfriendlyAvatar();
+        if($this->provider_id == null){
+            return $this->avatar ? 'storage/avatars/' . $this->avatar : "https://ui-avatars.com/api/?name={$this->first_name}+{$this->last_name}";
+        }else{
+            return $this->profile_image;
         }
+    }
 
-        return $avatar;
+    public static function search($search)
+    {
+        return empty($search) ? static::query()
+            : static::query()->where('first_name', 'like', '%' . $search . '%')
+            ->orWhere('last_name', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%');
     }
 }

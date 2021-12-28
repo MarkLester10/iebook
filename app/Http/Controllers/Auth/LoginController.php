@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User\User;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
@@ -103,7 +104,8 @@ class LoginController extends Controller
 
         if (!$user) {
             $user = new User();
-            $user->name = $data->name;
+            $user->first_name = Str::beforeLast($data->name, ' ');
+            $user->last_name = Str::afterLast($data->name, ' ');
             $user->email = $data->email;
             $user->provider_id = $data->id;
             $user->avatar = $data->avatar;

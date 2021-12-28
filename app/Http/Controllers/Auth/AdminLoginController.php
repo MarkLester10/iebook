@@ -31,7 +31,7 @@ class AdminLoginController extends Controller
             return redirect()->intended(route('admin.dashboard'));
         }
 
-        return redirect()->back()->withInput($request->only('email', 'remember'))->with('status', 'Invalid login details');;
+        return redirect()->back()->withInput($request->only('email', 'remember'))->with('status', 'Invalid login details');
     }
 
     public function logout()

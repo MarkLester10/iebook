@@ -52,8 +52,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
         //admin dashboard
         Route::get('/dashboard', 'AdminPagesController@index')->name('admin.dashboard');
+
         //admin crud
         Route::resource('/users', 'AdminController');
+
+        // Term CRUD
+        Route::get('/terms/{id}/restore', 'TermController@restoreTerm')->name('terms.restore');
+        Route::delete('/terms/{id}/force-delete', 'TermController@forceDelete')->name('terms.force-delete');
+        Route::post('/terms/bulk-upload', 'TermController@bulkUpload')->name('terms.bulk-upload');
+        Route::resource('terms', 'TermController');
     });
 
     Route::group(['namespace' => 'Auth'], function () {
