@@ -1,0 +1,42 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Regular font family
+/// @type List
+$text-font-stack: "Oswald", sans-serif !default;
+
+// Open Sans
+$open-sans: "Open Sans", sans-serif !default;
+
+/// Copy text color
+/// @type Color
+$text-color: #212121 !default;
+
+/// Primary  color
+/// @type Color
+$primary-color: #751102 !default;
+
+/// Secondary  color
+/// @type Color
+$secondary-color: #e5bd77 !default;
+
+/// Light grey
+/// @type Color
+$light-grey: #f9fafc !default;
+
+/// Medium grey
+/// @type Color
+$mid-grey: #79919d !default;
+
+/// Border color
+/// @type Color
+$border-color: #e6e6e6 !default;
+
+/// Succes color
+/// @type Color
+$success-color: #67deb3 !default;
+
+/// Off  white color
+/// @type Color
+$off-white: #f8f6ec !default;

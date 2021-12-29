@@ -1,0 +1,35 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.3rem;
+
+  &--center {
+    justify-content: center;
+  }
+
+  & .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    &--completed {
+      color: $primary-color;
+    }
+
+    &--current {
+      color: $text-color;
+    }
+    &--blank {
+      color: $mid-grey;
+    }
+
+    &--completed > svg {
+      color: $primary-color;
+    }
+    &--current > svg {
+      color: $mid-grey;
+    }
+  }
+}

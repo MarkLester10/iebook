@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Term;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,6 +34,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+        $termOfTheDay = Term::inRandomOrder()->first();
+        return view('welcome', compact('termOfTheDay'));
     }
 }

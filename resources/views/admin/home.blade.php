@@ -287,7 +287,7 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-action">
                                     <button type="button" class="btn btn-sm m-btn--pill  btn-brand">
-                                        Term Of The Day
+                                        Word Of The Day
                                     </button>
                                 </div>
                             </div>

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+// Configuration and helpers
+@import "abstracts/variables";
+
+// Base stuff
+@import "base/base", "base/typography", "base/helpers";
+
+// Components
+@import "components/button", "components/card", "components/breadcrumbs";
+
+// Layout-related sections
+@import "layout/header", "layout/landing", "layout/collections",
+  "layout/shipping", "layout/footer", "layout/mobilenav", "layout/cart",
+  "layout/account", "layout/discount";

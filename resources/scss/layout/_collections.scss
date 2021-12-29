@@ -1,0 +1,28 @@
+.collections__banner {
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @media (max-width: 640px) {
+      height: 20vh;
+    }
+  }
+}
+
+.product__collections {
+  padding-bottom: 5rem;
+
+  & > h1.app__subtitle {
+    text-align: center;
+    color: $primary-color;
+    text-transform: uppercase;
+    padding: 4rem 0;
+    font-size: 2rem;
+  }
+}
+
+.ads {
+  padding: 5rem 0;
+  text-transform: uppercase;
+  text-align: center;
+}

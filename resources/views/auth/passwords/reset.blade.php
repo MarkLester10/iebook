@@ -1,65 +1,66 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
 
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<section class="py-12 flex items-center justify-center">
+    <div class="app__container">
+      <form  method="POST" action="{{ route('password.update') }}" class="w-full md:w-6/12 xl:w-4/12 mx-auto">
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
+        <div class="app__flexbox flex-col gap-8">
+          <h1 class="app__subtitle uppercase">Reset password</h1>
+          <small class="em__grey"
+            >Please fill in the following fields below.</small
+          >
         </div>
+        @if ($errors->any())
+        <div class="mt-12">
+            <div class="app__msg--error">
+              <small>{{ $errors->first() }}</small>
+            </div>
+          </div>
+        @endif
+        <div class="mt-8">
+
+          <input
+            autocomplete="off"
+            type="text"
+            placeholder="Email"
+            required
+            name="email"
+            class="p-6 mt-6"
+            value="{{ $email ?? old('email') }}"
+          />
+          <input
+            autocomplete="off"
+            type="password"
+            placeholder="Password"
+            name="password"
+            class="p-6 mt-6"
+            required
+
+          />
+          <input
+            autocomplete="off"
+            type="password"
+            placeholder="Confirm Password"
+            name="password_confirmation"
+            class="p-6 mt-6"
+            required
+
+          />
+          <button type="submit" class="app__btn-primary mt-8 w-full">
+            Reset Password
+          </button>
+          <small class="em__grey block mt-12 text-center"
+            >Remember your password?
+            <a href="{{ route('login') }}" class="em__secondary underline"
+              >Login</a
+            ></small
+          >
+        </div>
+      </form>
     </div>
-</div>
+  </section>
 @endsection

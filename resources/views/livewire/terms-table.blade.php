@@ -220,7 +220,7 @@
                 <tr class="text-nowrap">
                     <td class="align-middle">{{ ($terms->currentpage()-1) * $terms->perpage() + $loop->index + 1 }}</td>
                     <td class="align-middle p-image d-flex">
-                        <img src="{{ $term->image ? asset('storage/term_images/' . $term->image) : asset('imgs/logo.png') }}" style="width:60px; height:60px; object-fit:cover;" alt="">
+                        <img src="{{ $term->image ? asset('storage/term_images/' . $term->image) : asset('imgs/logo_v2.png') }}" style="width:60px; height:60px; object-fit:cover;" alt="">
                         <p class="ml-2 m--font-boldest m-0 d-flex align-items-center">
                             {{ $term->term }}
                         </p>

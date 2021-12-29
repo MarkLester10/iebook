@@ -1,0 +1,33 @@
+/**
+ * Basic typography style for copy text
+ */
+body {
+  color: $text-color;
+  font: normal 125% / 1.4 $text-font-stack !important;
+  font-size: 1.6rem !important;
+  letter-spacing: 0.5px;
+}
+
+.app__title {
+  font: 500 125% / 1.4 $text-font-stack;
+  font-size: 5rem;
+  letter-spacing: 1px;
+
+  @media screen and (max-width: 640px) {
+    font-size: 2.5rem;
+  }
+}
+
+.app__subtitle {
+  font: 500 125% / 1.4 $text-font-stack;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+
+  @media screen and (max-width: 640px) {
+    font-size: 1.8rem;
+  }
+}
+
+.para {
+  font-weight: 300;
+}

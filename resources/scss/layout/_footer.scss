@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+.app__footer {
+  padding: 3rem 0;
+  background-color: $off-white;
+}
+
+.footer__content {
+  & a:hover {
+    text-decoration: underline;
+  }
+}

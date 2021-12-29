@@ -57,7 +57,7 @@ class User extends Authenticatable
     public function avatar()
     {
         if($this->provider_id == null){
-            return $this->avatar ? 'storage/avatars/' . $this->avatar : "https://ui-avatars.com/api/?name={$this->first_name}+{$this->last_name}";
+            return $this->avatar ? asset("storage/avatars/{$this->avatar}")  : "https://ui-avatars.com/api/?name={$this->first_name}+{$this->last_name}";
         }else{
             return $this->profile_image;
         }

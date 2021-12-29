@@ -1,0 +1,112 @@
+.em__primary {
+  color: $primary-color !important;
+}
+.em__secondary {
+  color: $secondary-color !important;
+}
+.bg__secondary {
+  background-color: $secondary-color !important;
+}
+.em__grey {
+  color: $mid-grey !important;
+}
+
+.app__border {
+  border: 1px solid $secondary-color;
+}
+
+.app__divider-2 {
+  position: relative;
+  border: 1px solid $border-color;
+  &--text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 1rem;
+    font-size: 1.3rem;
+    color: $mid-grey;
+  }
+}
+.app__container--md {
+  width: 80%;
+  margin: 0 auto;
+
+  @media (min-width: 2560px) {
+    width: 60%;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding: 0 2rem;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #212121;
+  opacity: 0.3;
+  z-index: 1;
+  -webkit-box-shadow: inset 21px 2px 268px 82px rgba(0, 0, 0, 1);
+  -moz-box-shadow: inset 21px 2px 268px 82px rgba(0, 0, 0, 1);
+  box-shadow: inset 21px 2px 268px 82px rgba(0, 0, 0, 1);
+}
+
+.bg__gradient{
+  background-image: linear-gradient(to left top, #902f1f, #a95532, #c1794a, #d79d67, #eec288);
+}
+
+.bg__offwhite{
+  background-color: $off-white;
+}
+
+.tooltip {
+  cursor: pointer;
+
+  &--content {
+    position: absolute;
+    top: -9rem;
+    left: -9rem;
+    background-color: $light-grey;
+    width: 12rem;
+    font-size: 1.2rem;
+    padding: 1.5rem 1rem;
+    visibility: hidden;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+
+  &:hover &--content {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.384);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 900 !important;
+  transition: all 0.5s ease;
+
+  &.active {
+    pointer-events: all;
+    opacity: 1;
+    visibility: visible;
+  }
+}

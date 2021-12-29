@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app__container {
+    @apply container px-6 py-4 mx-auto;
+  }
+
+  .app__flexbox {
+    @apply flex items-center justify-center;
+  }
+
+  .app__divider {
+    @apply hidden md:block md:w-11/12 border mx-auto;
+  }
+
+  .app__products__grid {
+    @apply w-full md:w-11/12 gap-6 md:gap-10 lg:gap-12 lg:w-9/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3;
+  }
+
+  .space-between {
+    @apply flex items-center justify-between;
+  }
+
+  .app__msg--error {
+    @apply px-6 py-4 tracking-wider bg-red-100 text-red-500;
+  }
+  .app__msg--success {
+    @apply px-6 py-4 tracking-wider bg-green-50 text-green-500;
+  }
+}

@@ -1,0 +1,94 @@
+.product__card {
+  padding: 2rem;
+  background-color: $light-grey;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+
+  & .product__image{
+    background: url('../images/ice.jpg') no-repeat center center/cover;
+    padding: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    padding: 1rem;
+  }
+
+  & .product__desc {
+    margin-top: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #ccc;
+
+    @media (max-width: 640px) {
+      font-size: 1.4rem;
+    }
+
+    & .price {
+      font-weight: 400;
+    }
+    & .status {
+      font-weight: 400;
+      font-size: 1.2rem;
+    }
+  }
+
+  & .product__actions {
+    padding-top: 2rem;
+
+    & .product__quantity {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      & label {
+        color: $mid-grey;
+        letter-spacing: 1px;
+
+        @media (max-width: 640px) {
+          font-size: 12px;
+        }
+      }
+
+      & .qty__btn {
+        color: $mid-grey;
+        width: 2rem;
+        height: 2rem;
+        padding: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        font-size: 3rem;
+        font-weight: 200;
+
+        @media (max-width: 640px) {
+          font-size: 2rem;
+        }
+
+        &:active {
+          background-color: $primary-color;
+          color: $text-color;
+          border: none;
+          transform: scale(0.8);
+        }
+      }
+      & input {
+        color: $mid-grey;
+        margin: 0 1rem;
+        width: 3rem;
+        text-align: center;
+        background: transparent;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        @media (max-width: 640px) {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

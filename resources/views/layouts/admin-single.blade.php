@@ -54,7 +54,7 @@
                         <div class="m-login__container">
                             <div class="m-login__logo">
                                 <a href="{{ url('/') }}">
-                                    <img style="width:80%; margin: 0 auto;" src="{{ asset('imgs/logo.png') }}">
+                                    <img style="width:80%; margin: 0 auto;" src="{{ asset('imgs/logo_v2.png') }}">
                                 </a>
                             </div>
 
