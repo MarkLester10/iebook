@@ -42,7 +42,7 @@ class PasswordUpdate extends Component
 
         if (count($data)) {
             User::find(auth()->user()->id)->update($data);
-            smilify('success', 'Password Updated Successfully');
+            session()->flash('message', 'Password Updated Successfully');
             return redirect()->route('user.profile');
         }
     }

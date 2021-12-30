@@ -59,8 +59,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <!-- Styles -->
-    @notifyCss
     @livewireStyles
+    @notifyCss
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
       rel="stylesheet"

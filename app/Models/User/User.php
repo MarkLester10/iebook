@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password', 'avatar',
+        'first_name','last_name', 'email', 'password', 'avatar', 'search_limit', 'is_premium',
     ];
 
     /**
@@ -69,5 +69,11 @@ class User extends Authenticatable
             : static::query()->where('first_name', 'like', '%' . $search . '%')
             ->orWhere('last_name', 'like', '%' . $search . '%')
             ->orWhere('email', 'like', '%' . $search . '%');
+    }
+
+    // Relationships
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 }

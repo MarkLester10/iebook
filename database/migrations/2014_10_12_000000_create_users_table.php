@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
+            $table->boolean('is_premium')->default(0);
+            $table->unsignedBigInteger('search_limit')->default(20);
             $table->string('provider_id')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();

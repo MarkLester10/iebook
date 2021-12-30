@@ -1,73 +1,49 @@
 <div class="my-3">
-    <div class="card h-100">
-        <div class="card-body">
-          <h6 class="d-flex align-items-center mb-3"></i>Update Profile</h6>
-
           <form wire:submit.prevent="updateProfile">
-            <div class="form-group">
-                <label for="first_name">{{ __('First Name') }}</label>
-                <div>
-                    <input id="name" wire:model="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" required autocomplete="first_name" autofocus>
-
-                    @error('first_name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+            @if ($errors->any())
+            <div class="my-4">
+                <div class="app__msg--error">
+                  <small>{{ $errors->first() }}</small>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="last_name">{{ __('Last Name') }}</label>
-                <div>
-                    <input id="name" wire:model="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" required autocomplete="last_name" autofocus>
+              </div>
+            @endif
+            <small class="my-2 block">First Name</small>
+            <input
+            autocomplete="off"
+            type="text"
+            placeholder="First Name"
+            required
+            wire:model="first_name"
+            class="p-6 @error('first_name') border-2 border-red-500 @enderror"
+            />
+            <small class="my-2 block mt-6">Last Name</small>
+            <input
+            autocomplete="off"
+            type="text"
+            placeholder="Last Name"
+            required
+            name="last_name"
+            class="p-6 @error('last_name') border-2 border-red-500 @enderror"
+            wire:model="last_name"
+            />
+            <small class="my-2 mt-6 block">Email</small>
+            <input
+            autocomplete="off"
+            type="email"
+            placeholder="Email"
+            required
+            name="email"
+            class="p-6 @error('last_name') border-2 border-red-500 @enderror"
+            wire:model="email"
+            />
+            <small class="my-2 mt-6 block">Profile Image</small>
+            <input type="file" wire:model="avatar" class="p-6 border border-gray-500 @error('file') border-2 border-red-500 @enderror">
 
-                    @error('last_name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label for="email">{{ __('Email') }}</label>
-
-                <div>
-                    <input id="email" wire:model="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" autofocus>
-
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="avatar">{{ __('Avatar') }}</label>
-
-                <div>
-                    <input id="avatar" wire:model="avatar" type="file" class="form-control border-0 @error('avatar') is-invalid @enderror" name="avatar"  autofocus>
-
-                    @error('avatar')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div>
-                    <button type="submit" class="btn btn-block w-100 btn-primary">
-                        <span>
-                            {{ __('Update') }}
-                        </span>
-                    </button>
-                </div>
-            </div>
+            <button type="submit" class="app__btn-primary w-full mt-6">
+                <span>
+                    {{ __('Update Profile') }}
+                </span>
+            </button>
           </form>
-
-        </div>
-      </div>
 </div>

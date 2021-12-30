@@ -44,7 +44,8 @@ class ProfileUpdate extends Component
         'first_name' => 'required|max:20',
         'last_name' => 'required|max:20',
         'email' => 'required|email',
-        'avatar' => ['nullable', 'sometimes', 'mimes:jpeg,jpg,png,gif,svg' , 'image', 'file', 'max:5242880']
+        'avatar' => ['nullable', 'sometimes']
+        // 'avatar' => ['nullable', 'sometimes', 'mimes:jpeg,jpg,png,gif,svg' , 'image', 'file', 'max:5242880']
     ];
 
     public function updated($propertyName)
@@ -86,7 +87,7 @@ class ProfileUpdate extends Component
 
         if (count($data)) {
             User::find($this->userId)->update($data);
-            smilify('success', 'Profile Updated Successfully');
+            session()->flash('message', 'Profile Updated Successfully');
             return redirect()->route('user.profile');
         }
     }

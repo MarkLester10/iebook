@@ -3,7 +3,7 @@
 @section('content')
 <section class="hero py-12 flex items-center justify-center">
     <div class="app__container">
-      <form method="POST" action="{{ route('login') }}" class="w-full md:w-6/12 xl:w-4/12 mx-auto bg-white py-16 px-12">
+      <form method="POST" action="{{ route('login') }}" class="w-full md:w-6/12 xl:w-4/12 mx-auto bg-white py-16 px-6 md:px-12">
         @csrf
         <div class="app__flexbox flex-col gap-8">
           <h1 class="app__subtitle uppercase">SIGN IN</h1>
