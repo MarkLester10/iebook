@@ -33,29 +33,35 @@
 }
 
 .app__btn-primary {
-  @extend .btn-base;
+
   background-color: $primary-color;
   &:before {
     border: 1px solid $primary-color;
   }
 }
 
-.app__btn-secondary {
-  @extend .btn-base;
-  background-color: $mid-grey;
 
-  &:before {
-    border: 1px solid $mid-grey;
-  }
+.app__btn-secondary {
+    @extend .btn-base;
+    background-color: $mid-grey;
+
+    &:before {
+        border: 1px solid $mid-grey;
+    }
 }
 
 .app__btn-t {
-  @extend .btn-base;
-  background-color: #cc7852;
+    @extend .btn-base;
+    background-color: #cc7852;
 
-  &:before {
-    border: 1px solid #cc7852;
-  }
+    &:before {
+        border: 1px solid #cc7852;
+    }
+}
+
+button:disabled.app__btn-t{
+    @extend .btn-base;
+    background-color: #ccc;
 }
 
 button:disabled.app__btn-secondary {

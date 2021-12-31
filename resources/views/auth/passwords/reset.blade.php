@@ -3,9 +3,9 @@
 @section('content')
 
 
-<section class="py-12 flex items-center justify-center">
+<section class="hero py-12 flex items-center justify-center">
     <div class="app__container">
-      <form  method="POST" action="{{ route('password.update') }}" class="w-full md:w-6/12 xl:w-4/12 mx-auto">
+      <form  method="POST" action="{{ route('password.update') }}" class="w-full md:w-6/12 xl:w-4/12 mx-auto bg-white py-16 px-6 md:px-12">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
         <div class="app__flexbox flex-col gap-8">

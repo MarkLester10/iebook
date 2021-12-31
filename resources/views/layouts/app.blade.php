@@ -61,6 +61,7 @@
     <!-- Styles -->
     @livewireStyles
     @notifyCss
+    @stack('css')
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -171,6 +172,7 @@
     <x:notify-messages />
     @livewireScripts
     @notifyJs
+    @stack('scripts')
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
