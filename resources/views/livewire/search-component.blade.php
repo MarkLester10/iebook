@@ -14,25 +14,58 @@
                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                 <span>Search</span>
             </button>
+            @if(auth()->user()->is_premium)
             <button wire:ignore type="button" class="app__btn-t w-full flex items-center justify-center space-x-2" id="v-button">
                 <i class="fas fa-microphone text-[16px]" id="micIcon"></i>
                 <span>Voice Search </span>
             </button>
+            @endif
         </div>
     </form>
 
-    {{-- <div class="bg-white p-6 mt-10 space-y-8 max-h-[800px] overflow-y-auto">
-            <div class="border flex p-4 md:p-6 md:space-x-8 space-x-6">
-                <img src="{{ asset('imgs/logo_v2.png') }}" class="w-28 md:w-48 h-28 md:h-48 object-cover" alt="">
+    @if(count($terms) > 0)
+    <div class="bg-white p-6 mt-10 space-y-8 w-full">
+            @foreach($terms as $item)
+            <div class="border flex p-4 md:p-6 md:space-x-8 space-x-6 w-full">
+                <img src="{{ $item->image ? asset('storage/term_images/' . $item->image) : asset('imgs/logo_v2.png') }}" class="w-28 md:w-48 h-28 md:h-48 object-cover" alt="">
                 <div>
-                    <h1 class="subtitle__text">Fishbone Diagram</h1>
-                    <p class="font-light lowercase line-clamp-3 mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus maiores omnis odit tempore consectetur, rerum fugiat explicabo nostrum soluta! Laudantium dicta veniam officia animi, distinctio voluptatum dolore dolorum placeat vitae aperiam ea nihil perspiciatis quod qui blanditiis aliquam officiis enim voluptatibus. Impedit deleniti et ratione ducimus quam consequatur quasi omnis?</p>
-                    <button class="!text-green-500 underline mt-4 text-[13px]">Read More</button>
+                    <h1 class="subtitle__text">{{ $item->term }}</h1>
+                    <p class="font-light lowercase line-clamp-2 mt-2">
+                        {{ strip_tags($item->description) }}
+                    </p>
+                    <button class="!text-green-500 underline mt-4 text-[13px]" wire:click="readMore({{ $item->id }})">Read More</button>
                 </div>
             </div>
-    </div> --}}
+            @endforeach
 
-    <div class="bg-white p-6 mt-10 space-y-8 overflow-y-auto w-full" wire:loading wire:target="search">
+            @if($totalTerms > $limitPerPage)
+            <div class="flex justify-end">
+                <button type="button" class="app__btn-primary flex items-center space-x-3" wire:click="loadMore">
+                    <div wire:loading wire:target="loadMore" style="border-top-color:transparent" class="w-8 h-8 border-4 border-red-300 border-solid rounded-full mx-auto animate-spin">
+                    </div>
+                    <span wire:loading.remove>Load More</span>
+                    <span wire:loading wire:target="loadMore">Loading more...</span>
+                    </button>
+            </div>
+            @else
+            <div class="text-center p-8">
+                <h1 class="subtitle__text em__grey">Nothing Follows</h1>
+            </div>
+            @endif
+    </div>
+    @endif
+
+
+    @if($noFound)
+        <div class="bg-white p-6 mt-10 space-y-8 max-h-[800px] overflow-y-auto w-full">
+            <div class="border text-center p-8">
+                    <h1 class="subtitle__text">No Results.</h1>
+                    <p class="font-light mt-2">Try narrowing your search.</p>
+            </div>
+    </div>
+    @endif
+
+    <div class="bg-white p-6 mt-10 space-y-8 overflow-y-auto w-full" wire:loading wire:target="search" wire:loading.delay.longest>
         <div class="border shadow rounded-md p-4 w-full mx-auto">
             <div class="animate-pulse flex md:space-x-8 space-x-6">
               <div class="bg-gray-300 w-28 md:w-48 h-28 md:h-48 object-cover"></div>
@@ -87,87 +120,52 @@
               </div>
             </div>
         </div>
-       </div>
+        <div class="border shadow rounded-md p-4 w-full mx-auto">
+            <div class="animate-pulse flex md:space-x-8 space-x-6">
+              <div class="bg-gray-300 w-28 md:w-48 h-28 md:h-48 object-cover"></div>
+              <div class="flex-1 space-y-6 py-1">
+                <div class="h-4 bg-gray-300 rounded"></div>
+                <div class="space-y-3">
+                  <div class="grid grid-cols-3 gap-4">
+                    <div class="h-4 bg-gray-300 rounded col-span-2"></div>
+                    <div class="h-4 bg-gray-300 rounded col-span-1"></div>
+                  </div>
+                  <div class="h-4 bg-gray-300 rounded"></div>
+                  <div class="h-4 bg-gray-300 rounded"></div>
+                  <div class="h-4 bg-gray-300 rounded"></div>
+                  <div class="h-6 w-24 !mt-6 bg-gray-300 rounded"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="border shadow rounded-md p-4 w-full mx-auto">
+            <div class="animate-pulse flex md:space-x-8 space-x-6">
+              <div class="bg-gray-300 w-28 md:w-48 h-28 md:h-48 object-cover"></div>
+              <div class="flex-1 space-y-6 py-1">
+                <div class="h-4 bg-gray-300 rounded"></div>
+                <div class="space-y-3">
+                  <div class="grid grid-cols-3 gap-4">
+                    <div class="h-4 bg-gray-300 rounded col-span-2"></div>
+                    <div class="h-4 bg-gray-300 rounded col-span-1"></div>
+                  </div>
+                  <div class="h-4 bg-gray-300 rounded"></div>
+                  <div class="h-4 bg-gray-300 rounded"></div>
+                  <div class="h-4 bg-gray-300 rounded"></div>
+                  <div class="h-6 w-24 !mt-6 bg-gray-300 rounded"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 
 
 @push('scripts')
 <script>
-    const searchForm = document.querySelector("#search-form");
-const searchFormInput = document.querySelector("#searchFormInput");
-const info = document.querySelector("#info");
-
-
-// The speech recognition interface lives on the browser’s window object
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
-
-if(SpeechRecognition) {
-  console.log("Your Browser supports speech Recognition");
-
-  const recognition = new SpeechRecognition();
-  recognition.continuous = true;
-  // recognition.lang = "en-US";
-
-
-  const micBtn = document.querySelector("#v-button");
-  const micIcon = document.querySelector("#micIcon");
-  const submitBtn = document.querySelector("#submitBtn");
-
-  micBtn.addEventListener("click", micBtnClick);
-  function micBtnClick() {
-    if(micIcon.classList.contains("fa-microphone")) { // Start Voice Recognition
-    recognition.start();
-    }
-    else {
-    recognition.stop();
-    }
-  }
-
-  recognition.addEventListener("start", startSpeechRecognition); // <=> recognition.onstart = function() {...}
-  function startSpeechRecognition() {
-    info.style.display = "block";
-    micIcon.classList.remove("fa-microphone");
-    micIcon.classList.add("fa-microphone-slash");
-    searchFormInput.focus();
-    console.log("Voice activated, SPEAK");
-  }
-
-  recognition.addEventListener("end", endSpeechRecognition); // <=> recognition.onend = function() {...}
-  function endSpeechRecognition() {
-    info.style.display = "none";
-    micIcon.classList.remove("fa-microphone-slash");
-    micIcon.classList.add("fa-microphone");
-    searchFormInput.blur();
-    console.log("Speech recognition service disconnected");
-  }
-
-
-  recognition.addEventListener("result", resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
-  function resultOfSpeechRecognition(event) {
-    const current = event.resultIndex;
-    const transcript = event.results[current][0].transcript;
-
-    if(transcript.toLowerCase().trim()=== "reset") {
-      recognition.stop();
-      Livewire.emit('searchInput',null);
-    }else {
-    Livewire.emit('searchInput',transcript);
-    searchFormInput.focus();
-    setTimeout(() => {
-        submitBtn.click();
-    }, 800);
-    }
-
-
-
-  }
-
-
-}
-else {
-  console.log("Your Browser does not support speech Recognition");
-  info.textContent = "Your Browser does not support Speech Recognition";
-}
+const searchForm=document.querySelector("#search-form"),searchFormInput=document.querySelector("#searchFormInput"),info=document.querySelector("#info"),SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(SpeechRecognition){console.log("Your Browser supports speech Recognition");const e=new SpeechRecognition;e.continuous=!0;const o=document.querySelector("#v-button"),n=document.querySelector("#micIcon"),t=document.querySelector("#submitBtn");function micBtnClick(){n.classList.contains("fa-microphone")?e.start():e.stop()}function startSpeechRecognition(){info.style.display="block",n.classList.remove("fa-microphone"),n.classList.add("fa-microphone-slash"),searchFormInput.focus(),console.log("Voice activated, SPEAK")}function endSpeechRecognition(){info.style.display="none",n.classList.remove("fa-microphone-slash"),n.classList.add("fa-microphone"),searchFormInput.blur(),console.log("Speech recognition service disconnected")}function resultOfSpeechRecognition(o){const n=o.resultIndex,c=o.results[n][0].transcript;"reset"===c.toLowerCase().trim()?(e.stop(),Livewire.emit("searchInput",null)):(Livewire.emit("searchInput",c),searchFormInput.focus(),setTimeout(()=>{t.click()},800))}o.addEventListener("click",micBtnClick),e.addEventListener("start",startSpeechRecognition),e.addEventListener("end",endSpeechRecognition),e.addEventListener("result",resultOfSpeechRecognition)}else console.log("Your Browser does not support speech Recognition"),info.textContent="Your Browser does not support Speech Recognition";
 </script>
 @endpush
 

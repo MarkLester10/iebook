@@ -23,7 +23,7 @@
     />
     <meta
       property="og:description"
-      content="IE BOOK | Search exclusive Industrial Engineering Terms. IE BOOK is an Online Library For Professional and Future Industrial Engineers"
+      content="IE BOOK | Search exclusive Industrial Engineering Terms. IE BOOK is an Online Library For Professional and Future Industrial Engineers. Search the online dictionary of industrial engineering terminology. Over 12,000 entries have been compiled from the latest edition of the publication Industrial Engineering Terminology."
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -33,7 +33,7 @@
 
     <meta
       name="twitter:description"
-      content="IE BOOK | Search exclusive Industrial Engineering Terms. IE BOOK is an Online Library For Professional and Future Industrial Engineers"
+      content="IE BOOK | Search exclusive Industrial Engineering Terms. IE BOOK is an Online Library For Professional and Future Industrial Engineers. Search the online dictionary of industrial engineering terminology. Over 12,000 entries have been compiled from the latest edition of the publication Industrial Engineering Terminology."
     />
     <meta name="twitter:title" content="IE BOOK" />
     <meta name="author" content="IE BOOK" />
@@ -43,7 +43,7 @@
     />
     <meta
       name="description"
-      content="IE BOOK | Search exclusive Industrial Engineering Terms. IE BOOK is an Online Library For Professional and Future Industrial Engineers"
+      content="IE BOOK | Search exclusive Industrial Engineering Terms. IE BOOK is an Online Library For Professional and Future Industrial Engineers. Search the online dictionary of industrial engineering terminology. Over 12,000 entries have been compiled from the latest edition of the publication Industrial Engineering Terminology."
     />
     <meta
       name="thumbnail"
@@ -138,7 +138,7 @@
             <div>
               <img src="{{ asset('imgs/logo_v2.png') }}" style="width:100px" alt="">
               <p class="para mt-8">
-                 Online Library For Professional and Future Industrial Engineers
+                 Online Library For Professional and Future Industrial Engineers. Search the online dictionary of industrial engineering terminology. Over 12,000 entries have been compiled from the latest edition of the publication Industrial Engineering Terminology.
               </p>
           </div>
             <div class="flex flex-col space-y-6 md:space-y-12 py-12 md:py-0 md:pb-0 md:px-12 border-t md:border-t-0 md:border-r md:border-l">
@@ -168,7 +168,9 @@
             </div>
           </div>
         </div>
-      </footer>
+    </footer>
+
+
     <x:notify-messages />
     @livewireScripts
     @notifyJs

@@ -29,7 +29,9 @@ class HomeController extends Controller
 
     public function show()
     {
-        return view('users.profile');
+        $currentSubscription = auth()->user()->subscriptions()->where('status', 1)->latest()->first() ?? null;
+        $subscriptions = auth()->user()->subscriptions()->latest()->paginate(10);
+        return view('users.profile', compact('currentSubscription', 'subscriptions'));
     }
 
     public function welcome()

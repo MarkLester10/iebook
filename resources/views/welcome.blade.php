@@ -108,7 +108,7 @@
           It takes less than 1 minute to Signup, <br> then you can enjoy <span class="em__secondary">Unlimited Word Search</span>.
          </p>
         <a
-          href="#"
+          href="{{ route('account.upgrade.form') }}"
           class="mt-16 app__btn-primary shadow-md"
         >
           <div class="flex items-center space-x-2">

@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 use Carbon\Carbon;
+use App\Subscription;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

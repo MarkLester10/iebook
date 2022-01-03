@@ -28,6 +28,12 @@ Route::prefix('user')->group(function () {
     Route::get('/profile', 'HomeController@show')->name('user.profile');
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('/account/upgrade', 'SubscriptionController@accountUpgrade')->name('account.upgrade');
+    Route::get('/account/upgrade/payment-form', 'SubscriptionController@paymentForm')->name('account.upgrade.form');
+    Route::get('/account/upgrade/thankyou/{transaction_id}', 'SubscriptionController@thankyou')->name('thankyou');
+});
+
 
 // Socialite
 Route::group(['prefix' => 'login', 'namespace' => 'Auth'], function () {
@@ -47,7 +53,7 @@ Route::group(['prefix' => 'login', 'namespace' => 'Auth'], function () {
 
 
 //Admin Routes
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'portal/admin'], function () {
 
     Route::group(['middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
         //admin dashboard
@@ -65,8 +71,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['namespace' => 'Auth'], function () {
         //admin login
-        Route::get('/login', 'AdminLoginController@show')->name('admin.login');
         Route::post('/login', 'AdminLoginController@login');
+        Route::get('/login', 'AdminLoginController@show')->name('admin.login');
 
         //admin logout
         Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');

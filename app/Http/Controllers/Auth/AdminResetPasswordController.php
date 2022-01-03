@@ -28,7 +28,7 @@ class AdminResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/dashboard';
+    protected $redirectTo = '/portal/admin/dashboard';
 
     protected function guard()
     {

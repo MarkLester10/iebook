@@ -33,7 +33,7 @@ class TermsTable extends Component
     protected $queryString = ['type'];
 
     protected $rules = [
-        'term' => ['required','string','max:25'],
+        'term' => ['required','string','max:50'],
         'description' => ['required','string'],
         'image' => ['nullable', 'sometimes'],
     ];

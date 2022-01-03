@@ -295,9 +295,9 @@
                         <div class="m-portlet__body">
                             <div class="m-widget19">
                                 <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
-                                    <img src="assets/app/media/img//blog/blog1.jpg" alt="">
+                                    <img src="{{ $termOfTheDay->image ? asset('storage/term_images/' . $termOfTheDay->image) : asset('imgs/logo_v2.png') }}" alt="">
                                     <h3 class="m-widget19__title m--font-light">
-                                        Introducing New Feature
+                                       {{ $termOfTheDay->term }}
                                     </h3>
                                     <div class="m-widget19__shadow"></div>
                                 </div>
@@ -306,9 +306,7 @@
 
                                     </div>
                                     <div class="m-widget19__body">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry scrambled it to make text of the printing and typesetting industry scrambled a type specimen book text of the dummy text of the printing printing and typesetting industry scrambled dummy text of the printing.
-                                        <br> <br>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry scrambled it to make text of the printing and typesetting industry scrambled a type specimen book text of the dummy text of the printing printing and typesetting industry scrambled dummy text of the printing.
+                                        {{ strip_tags($termOfTheDay->description) }}
                                     </div>
                                 </div>
                                 {{-- <div class="m-widget19__action">

@@ -17,9 +17,12 @@ class CreateSubscriptionsTable extends Migration
             $table->id();
             $table->string('transaction_id');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('status')->comment('0: pending, 1: approved, 2: denied');
+            $table->string('remarks')->nullable();
             $table->string('code');
-            $table->datetime('start_date');
-            $table->datetime('end_date');('start_date');
+            $table->string('proof_of_payment');
+            $table->datetime('start_date')->nullable();
+            $table->datetime('end_date')->nullable();
             $table->timestamps();
         });
     }

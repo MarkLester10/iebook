@@ -33,7 +33,7 @@
 }
 
 .app__btn-primary {
-
+    @extend .btn-base;
   background-color: $primary-color;
   &:before {
     border: 1px solid $primary-color;

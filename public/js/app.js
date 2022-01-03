@@ -21,6 +21,12 @@ function fixedNav() {
   }
 }
 
+var closeLimitBtn = document.querySelector("#closeLimitBtn");
+var limitReachModal = document.querySelector("#limitReachModal");
+closeLimitBtn.addEventListener("click", function (t) {
+  console.log(t.target);
+  limitReachModal.classList.toggle("active");
+});
 var tooltipPopUp = document.querySelector("#popup-tooltip");
 modal = document.querySelector(".modal"), closeBtn = document.querySelector(".close-btn"), tooltipPopUp.addEventListener("click", function () {
   modal.classList.add("active");
