@@ -202,6 +202,7 @@
             </div>
         </div>
     </div>
+    <div style="overflow-x: auto;">
     <div class="table-responsive">
         <table class="table table-striped table-bordered nowrap" style="width:100%">
             <thead>
@@ -266,6 +267,7 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
     </div>
         {{ $terms->links() }}
 
