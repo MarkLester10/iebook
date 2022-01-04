@@ -59,6 +59,12 @@ Route::group(['prefix' => 'portal/admin'], function () {
         //admin dashboard
         Route::get('/dashboard', 'AdminPagesController@index')->name('admin.dashboard');
 
+        // Subscriptions
+        Route::get('/subscriptions/pending', 'SubscriptionController@pending')->name('subscriptions.pending');
+        Route::get('/subscriptions/approved', 'SubscriptionController@approved')->name('subscriptions.approved');
+        Route::get('/subscriptions/denied', 'SubscriptionController@denied')->name('subscriptions.denied');
+        Route::get('/subscriptions/expired', 'SubscriptionController@expired')->name('subscriptions.expired');
+
         //admin crud
         Route::resource('/users', 'AdminController');
 

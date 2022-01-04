@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+
+
 
 class RedirectIfAuthenticated
 {
@@ -29,7 +30,7 @@ class RedirectIfAuthenticated
                 break;
             default:
                 if (Auth::guard($guard)->check()) {
-                    return redirect()->route('home');
+                    return redirect()->route('user.profile');
                 }
                 break;
         }

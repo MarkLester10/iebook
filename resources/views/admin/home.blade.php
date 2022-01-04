@@ -1,6 +1,7 @@
 @extends('layouts.admin-app')
 @section('title-tab', 'Dashboard')
 
+
 @section('breadcrumbs')
 <h3 class="m-subheader__title ">
     Dashboard
@@ -8,6 +9,83 @@
 @endsection
 
 @section('content')
+      <!--Begin::Main Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__body  m-portlet__body--no-padding">
+            <div class="row m-row--no-padding m-row--col-separator-xl">
+                <div class="col-xl-4">
+                    <!--begin:: Widgets/Stats2-1 -->
+                    <div class="m-widget1">
+                        <div class="m-widget1__item">
+                            <div class="row m-row--no-padding align-items-center">
+                                <div class="col">
+                                    <h3 class="m-widget1__title">
+                                        Total Profit
+                                    </h3>
+                                    <span class="m-widget1__desc">
+                                        Accumulated Profit
+                                    </span>
+                                </div>
+                                <div class="col m--align-right">
+                                    <span class="m-widget1__number m--font-brand">
+                                        &#8369; {{ number_format($totalProfit,2) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end:: Widgets/Stats2-1 -->
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="m-widget1">
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="col">
+                                <h3 class="m-widget1__title">
+                                    Total Users
+                                </h3>
+                                <span class="m-widget1__desc">
+                                    Basic and premium accounts
+                                </span>
+                            </div>
+                            <div class="col m--align-right">
+                                <span class="m-widget1__number m--font-danger">
+                                    {{ $totalUsers }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="m-widget1">
+                        <div class="m-widget1__item">
+                            <div class="row m-row--no-padding align-items-center">
+                                <div class="col">
+                                    <h3 class="m-widget1__title">
+                                        Sales Over Time
+                                    </h3>
+                                    <span class="m-widget1__desc">
+                                        Today: 12:01 AM - 11:59 PM
+                                    </span>
+                                </div>
+                                <div class="col m--align-right">
+                                    <span class="m-widget1__number m--font-success">
+                                        &#8369; {{ number_format($salesOverTime, 2) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--End::Main Portlet-->
+
 			<!--Begin::Main Portlet-->
             <div class="row">
                 <div class="col-xl-4">
@@ -17,68 +95,17 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Trends
+                                        Website Visits
                                     </h3>
                                 </div>
                             </div>
-                            <div class="m-portlet__head-tools">
-                                <ul class="m-portlet__nav">
-                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-                                        <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
-                                            All
-                                        </a>
-                                        <div class="m-dropdown__wrapper">
-                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 36.5px;"></span>
-                                            <div class="m-dropdown__inner">
-                                                <div class="m-dropdown__body">
-                                                    <div class="m-dropdown__content">
-                                                        <ul class="m-nav">
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Activity
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Messages
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        FAQ
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Support
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                         <div class="m-portlet__body">
                             <!--begin::Widget5-->
                             <div class="m-widget4">
                                 <div class="m-widget4__chart m-portlet-fit--sides m--margin-top-10 m--margin-top-20" style="height:260px;">
-                                    <canvas id="m_chart_trends_stats"></canvas>
+                                    <canvas id="m_chart_trends_stats_2"></canvas>
                                 </div>
                                 <div class="m-widget4__item">
                                     <div class="m-widget4__img m-widget4__img--logo">
@@ -86,16 +113,13 @@
                                     </div>
                                     <div class="m-widget4__info">
                                         <span class="m-widget4__title">
-                                            Phyton
+                                            Total Page Visits
                                         </span>
-                                        <br>
-                                        <span class="m-widget4__sub">
-                                            A Programming Language
-                                        </span>
+
                                     </div>
                                     <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-danger">
-                                            +$17
+                                        <span class="m-widget4__number m--font-info">
+                                            {{ $totalVisits }}
                                         </span>
                                     </span>
                                 </div>
@@ -105,17 +129,18 @@
                                     </div>
                                     <div class="m-widget4__info">
                                         <span class="m-widget4__title">
-                                            FlyThemes
+                                            Total Basic Accounts
                                         </span>
                                         <br>
                                         <span class="m-widget4__sub">
-                                            A Let's Fly Fast Again Language
+                                            {{ $totalBasicAccount / $totalUsers * 100 }}% of total users
                                         </span>
                                     </div>
                                     <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-danger">
-                                            +$300
+                                        <span class="m-widget4__number m--font-success">
+                                            {{ $totalBasicAccount }}
                                         </span>
+
                                     </span>
                                 </div>
                                 <div class="m-widget4__item">
@@ -124,16 +149,16 @@
                                     </div>
                                     <div class="m-widget4__info">
                                         <span class="m-widget4__title">
-                                            AirApp
+                                            Total Premium Accounts
                                         </span>
                                         <br>
                                         <span class="m-widget4__sub">
-                                            Awesome App For Project Management
+                                            {{ $totalPremiumAccount / $totalUsers * 100 }}% of total users
                                         </span>
                                     </div>
                                     <span class="m-widget4__ext">
                                         <span class="m-widget4__number m--font-danger">
-                                            +$6700
+                                            {{ $totalPremiumAccount }}
                                         </span>
                                     </span>
                                 </div>
@@ -150,128 +175,74 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text m--font-light">
-                                        Activity
+                                        Subscriptions
                                     </h3>
                                 </div>
                             </div>
-                            <div class="m-portlet__head-tools">
-                                <ul class="m-portlet__nav">
-                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-                                        <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-                                            <i class="fa fa-genderless m--font-light"></i>
-                                        </a>
-                                        <div class="m-dropdown__wrapper">
-                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                            <div class="m-dropdown__inner">
-                                                <div class="m-dropdown__body">
-                                                    <div class="m-dropdown__content">
-                                                        <ul class="m-nav">
-                                                            <li class="m-nav__section m-nav__section--first">
-                                                                <span class="m-nav__section-text">
-                                                                    Quick Actions
-                                                                </span>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Activity
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Messages
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        FAQ
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Support
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                            <li class="m-nav__item">
-                                                                <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
-                                                                    Cancel
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                         <div class="m-portlet__body">
                             <div class="m-widget17">
                                 <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
                                     <div class="m-widget17__chart" style="height:320px;">
-                                        <canvas id="m_chart_activities"></canvas>
+
                                     </div>
                                 </div>
                                 <div class="m-widget17__stats">
                                     <div class="m-widget17__items m-widget17__items-col1">
                                         <div class="m-widget17__item">
+                                            <a href="{{ route('subscriptions.pending') }}">
                                             <span class="m-widget17__icon">
-                                                <i class="flaticon-truck m--font-brand"></i>
+                                                <i class="flaticon-time-3 m--font-brand"></i>
                                             </span>
                                             <span class="m-widget17__subtitle">
-                                                Delivered
+                                                Pending
                                             </span>
                                             <span class="m-widget17__desc">
-                                                15 New Paskages
+                                                {{ $pendingSubscriptions }} New Subscriptions
                                             </span>
+                                        </a>
                                         </div>
                                         <div class="m-widget17__item">
+                                            <a href="{{ route('subscriptions.denied') }}">
                                             <span class="m-widget17__icon">
-                                                <i class="flaticon-paper-plane m--font-info"></i>
+                                                <i class="flaticon-close m--font-danger"></i>
                                             </span>
                                             <span class="m-widget17__subtitle">
-                                                Reporeted
+                                                Denied
                                             </span>
                                             <span class="m-widget17__desc">
-                                                72 Support Cases
+                                                {{ $deniedSubscriptions }} Declined Subscriptions
                                             </span>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="m-widget17__items m-widget17__items-col2">
                                         <div class="m-widget17__item">
+                                            <a href="{{ route('subscriptions.approved') }}">
                                             <span class="m-widget17__icon">
                                                 <i class="flaticon-pie-chart m--font-success"></i>
                                             </span>
                                             <span class="m-widget17__subtitle">
-                                                Ordered
+                                                Active
                                             </span>
                                             <span class="m-widget17__desc">
-                                                72 New Items
+                                                {{ $approvedSubscriptions }} Active Subscriptions
                                             </span>
+                                            </a>
                                         </div>
                                         <div class="m-widget17__item">
+                                            <a href="{{ route('subscriptions.expired') }}">
                                             <span class="m-widget17__icon">
-                                                <i class="flaticon-time m--font-danger"></i>
+                                                <i class="flaticon-time m--font-warning"></i>
                                             </span>
                                             <span class="m-widget17__subtitle">
-                                                Arrived
+                                                Expired
                                             </span>
                                             <span class="m-widget17__desc">
-                                                34 Upgraded Boxes
+                                                {{ $expiredSubscriptions }} Expired Subscriptions
                                             </span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -321,132 +292,122 @@
                 </div>
             </div>
             <!--End::Main Portlet-->
-            <!--Begin::Main Portlet-->
-            <div class="m-portlet">
-                <div class="m-portlet__body  m-portlet__body--no-padding">
-                    <div class="row m-row--no-padding m-row--col-separator-xl">
-                        <div class="col-xl-4">
-                            <!--begin:: Widgets/Stats2-1 -->
-                            <div class="m-widget1">
-                                <div class="m-widget1__item">
-                                    <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
-                                            <h3 class="m-widget1__title">
-                                                Member Profit
-                                            </h3>
-                                            <span class="m-widget1__desc">
-                                                Awerage Weekly Profit
-                                            </span>
-                                        </div>
-                                        <div class="col m--align-right">
-                                            <span class="m-widget1__number m--font-brand">
-                                                +$17,800
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-widget1__item">
-                                    <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
-                                            <h3 class="m-widget1__title">
-                                                Orders
-                                            </h3>
-                                            <span class="m-widget1__desc">
-                                                Weekly Customer Orders
-                                            </span>
-                                        </div>
-                                        <div class="col m--align-right">
-                                            <span class="m-widget1__number m--font-danger">
-                                                +1,800
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-widget1__item">
-                                    <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
-                                            <h3 class="m-widget1__title">
-                                                Issue Reports
-                                            </h3>
-                                            <span class="m-widget1__desc">
-                                                System bugs and issues
-                                            </span>
-                                        </div>
-                                        <div class="col m--align-right">
-                                            <span class="m-widget1__number m--font-success">
-                                                -27,49%
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end:: Widgets/Stats2-1 -->
-                        </div>
-                        <div class="col-xl-4">
-                            <!--begin:: Widgets/Daily Sales-->
-                            <div class="m-widget14">
-                                <div class="m-widget14__header m--margin-bottom-30">
-                                    <h3 class="m-widget14__title">
-                                        Daily Sales
-                                    </h3>
-                                    <span class="m-widget14__desc">
-                                        Check out each collumn for more details
-                                    </span>
-                                </div>
-                                <div class="m-widget14__chart" style="height:120px;">
-                                    <canvas  id="m_chart_daily_sales"></canvas>
-                                </div>
-                            </div>
-                            <!--end:: Widgets/Daily Sales-->
-                        </div>
-                        <div class="col-xl-4">
-                            <!--begin:: Widgets/Profit Share-->
-                            <div class="m-widget14">
-                                <div class="m-widget14__header">
-                                    <h3 class="m-widget14__title">
-                                        Profit Share
-                                    </h3>
-                                    <span class="m-widget14__desc">
-                                        Profit Share between customers
-                                    </span>
-                                </div>
-                                <div class="row  align-items-center">
-                                    <div class="col">
-                                        <div id="m_chart_profit_share" class="m-widget14__chart" style="height: 160px">
-                                            <div class="m-widget14__stat">
-                                                45
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="m-widget14__legends">
-                                            <div class="m-widget14__legend">
-                                                <span class="m-widget14__legend-bullet m--bg-accent"></span>
-                                                <span class="m-widget14__legend-text">
-                                                    37% Sport Tickets
-                                                </span>
-                                            </div>
-                                            <div class="m-widget14__legend">
-                                                <span class="m-widget14__legend-bullet m--bg-warning"></span>
-                                                <span class="m-widget14__legend-text">
-                                                    47% Business Events
-                                                </span>
-                                            </div>
-                                            <div class="m-widget14__legend">
-                                                <span class="m-widget14__legend-bullet m--bg-brand"></span>
-                                                <span class="m-widget14__legend-text">
-                                                    19% Others
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end:: Widgets/Profit Share-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--End::Main Portlet-->
 
 @endsection
+
+@push('scripts')
+<script>
+   var Dashboard = (function() {
+
+    return {
+        init: function() {
+            (function() {
+                    if (0 != $("#m_chart_trends_stats_2").length) {
+                        var e = document
+                                .getElementById("m_chart_trends_stats_2")
+                                .getContext("2d"),
+                            t = {
+                                type: "line",
+                                data: {
+                                    labels: [
+                                        "January",
+                                        "February",
+                                        "March",
+                                        "April",
+                                        "May",
+                                        "June",
+                                        "July",
+                                        "August",
+                                        "September",
+                                        "October",
+                                        "November",
+                                        "December",
+                                    ],
+                                    datasets: [
+                                        {
+                                            label: "Total Visits",
+                                            backgroundColor: "#d2f5f9",
+                                            borderColor: mUtil.getColor(
+                                                "brand"
+                                            ),
+                                            pointBackgroundColor: Chart.helpers
+                                                .color("#ffffff")
+                                                .alpha(0)
+                                                .rgbString(),
+                                            pointBorderColor: Chart.helpers
+                                                .color("#ffffff")
+                                                .alpha(0)
+                                                .rgbString(),
+                                            pointHoverBackgroundColor: mUtil.getColor(
+                                                "danger"
+                                            ),
+                                            pointHoverBorderColor: Chart.helpers
+                                                .color("#000000")
+                                                .alpha(0.2)
+                                                .rgbString(),
+                                            data: @json($monthlyVisits)
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    title: { display: !1 },
+                                    tooltips: {
+                                        intersect: !1,
+                                        mode: "nearest",
+                                        xPadding: 10,
+                                        yPadding: 10,
+                                        caretPadding: 10
+                                    },
+                                    legend: { display: !1 },
+                                    responsive: !0,
+                                    maintainAspectRatio: !1,
+                                    hover: { mode: "index" },
+                                    scales: {
+                                        xAxes: [
+                                            {
+                                                display: !1,
+                                                gridLines: !1,
+                                                scaleLabel: {
+                                                    display: !0,
+                                                    labelString: "Month"
+                                                }
+                                            }
+                                        ],
+                                        yAxes: [
+                                            {
+                                                display: !1,
+                                                gridLines: !1,
+                                                scaleLabel: {
+                                                    display: !0,
+                                                    labelString: "Value"
+                                                },
+                                                ticks: { beginAtZero: !0 }
+                                            }
+                                        ]
+                                    },
+                                    elements: {
+                                        line: { tension: 0.19 },
+                                        point: { radius: 4, borderWidth: 12 }
+                                    },
+                                    layout: {
+                                        padding: {
+                                            left: 0,
+                                            right: 0,
+                                            top: 5,
+                                            bottom: 0
+                                        }
+                                    }
+                                }
+                            };
+                        new Chart(e, t);
+                    }
+                })()
+        }
+    };
+})();
+jQuery(document).ready(function() {
+    Dashboard.init();
+});
+
+</script>
+@endpush

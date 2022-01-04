@@ -35,8 +35,8 @@
                     </span>
                 </a>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-                <a href="#" class="m-menu__link m-menu__toggle">
+            <li class="m-menu__item  m-menu__item--submenu  @if(Route::is(['subscriptions.pending','subscriptions.approved','subscriptions.denied','subscriptions.expired'])) m-menu__item--active @endif" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                <a href="{{ route('subscriptions.pending') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-list-3"></i>
                     <span class="m-menu__link-text">
                         Subscriptions

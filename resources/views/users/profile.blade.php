@@ -99,6 +99,9 @@
                 </th>
 
                 <th scope="col" class="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
+                  Start Date
+                </th>
+                <th scope="col" class="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
                   Expiration Date
                 </th>
                 <th scope="col" class="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
@@ -141,6 +144,9 @@
                     </td>
 
                     <td class="px-6 py-4 whitespace-nowrap  text-gray-500">
+                        {{ $subscription->getStartDate() }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap  text-gray-500">
                         {{ $subscription->getExpirationDate() }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap  text-gray-500">
@@ -149,7 +155,7 @@
                   </tr>
                 @empty
                 <tr class="text-center">
-                    <td colspan="5" class="px-6 py-4 whitespace-nowrap">
+                    <td colspan="7" class="px-6 py-4 whitespace-nowrap">
                             No Subscriptions Found.
                     </td>
                   </tr>

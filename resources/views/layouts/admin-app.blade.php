@@ -37,6 +37,11 @@
 
         @livewireStyles
         @stack('css')
+        <style>
+            a{
+                text-decoration:none !important;
+            }
+        </style>
 	</head>
 
 	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
@@ -81,8 +86,9 @@
 
 	            <!--begin::Dashboard Scripts -->
         <script src="{{ asset('admin/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
+        {{-- <script src="{{ asset('admin/assets/app/js/dashboard.js') }}" type="text/javascript"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script src="{{ asset('admin/assets/app/js/dashboard.js') }}" type="text/javascript"></script>
+
                 <!--end::Dashboard Scripts -->
 
         @livewireScripts

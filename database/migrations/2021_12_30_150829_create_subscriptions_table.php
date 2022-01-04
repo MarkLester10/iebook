@@ -22,6 +22,7 @@ class CreateSubscriptionsTable extends Migration
             $table->string('code');
             $table->string('proof_of_payment');
             $table->datetime('start_date')->nullable();
+            $table->float('amount', 8,2)->default(150.00);
             $table->datetime('end_date')->nullable();
             $table->timestamps();
         });

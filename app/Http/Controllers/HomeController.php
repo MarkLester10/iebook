@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\PageViews;
 use App\Models\Term;
-use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -31,11 +33,15 @@ class HomeController extends Controller
     {
         $currentSubscription = auth()->user()->subscriptions()->where('status', 1)->latest()->first() ?? null;
         $subscriptions = auth()->user()->subscriptions()->latest()->paginate(10);
+
         return view('users.profile', compact('currentSubscription', 'subscriptions'));
     }
 
     public function welcome()
     {
+        views(PageViews::find(1)->first())
+        ->cooldown($minutes = 3)
+        ->record();
         $termOfTheDay = Term::inRandomOrder()->first();
         return view('welcome', compact('termOfTheDay'));
     }

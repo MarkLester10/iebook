@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
     <head>
         <meta charset="utf-8"> <!-- utf-8 works for most cases -->
         <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
@@ -8,7 +9,7 @@
         <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
         <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
         <!-- Tell iOS not to automatically link certain text strings. -->
-        <title>Password Reset</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+        <title>Subscription Approved</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
         <!-- Web Font / @font-face : BEGIN -->
         <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
         <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font.
@@ -448,23 +449,97 @@
             }
         </style>
         <!-- Progressive Enhancements : END -->
+
+        <!-- Order Summary Styling -->
+        <style>
+                   .address-container{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-direction: column !important;
+                }
+
+
+                .shipping {
+                    border: 1px solid #ccc;
+                    flex: 1;
+                    padding:10px;
+                    width: 100%;
+                }
+
+                .smarttable thead {
+                    background-color: #fedc00;
+                }
+
+                .smarttable td {
+                 border-bottom: 1px solid #ddd;
+                }
+                .smarttable td .image {
+                 display: flex;
+                 gap:10px;
+                 align-items: center;
+                }
+
+                @media screen and (max-width: 640px) {
+                            .smarttable {
+                            border: 0px;
+                            }
+
+                            .smarttable td:before {
+                                content: attr(data-label);
+                                float: left;
+                                font-weight: bold;
+                                /* text-transform: uppercase; */
+                            }
+
+                            .smarttable thead {
+                            display:none;
+                            border: none;
+                            height: 0px;
+                            margin: 0px;
+                            overflow: hidden;
+                            padding: 0px;
+                            max-width:0px;
+                            max-height:0px;
+                            }
+
+                            .smarttable tr {
+                            border: 1px solid #ddd;
+                            margin-bottom: 40px;
+                            display: block;
+                            }
+                            .smarttable td {
+                            border-bottom: 1px solid #ddd;
+                            display: block;
+                            font-size: 15px;
+                            text-align: right;
+                            }
+                            .smarttable td .image {
+                               flex-direction: column;
+                               align-items: flex-end;
+                            }
+                            .smarttable td.label{
+                               display: none !important;
+                            }
+                            }
+        </style>
     </head>
     <!--
     The email background color (#222222) is defined in three places:
     1. body tag: for most email clients
     2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
     3. mso conditional: For Windows 10 Mail
--->
+    -->
 
     <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #fff;">
         <center style="width: 100%; background-color: #D3D3D3;">
             <!--[if mso | IE]>
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #222222;">
-    <tr>
-    <td>
-    <![endif]-->
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #222222;">
+            <tr>
+            <td>
+            <![endif]-->
             <!-- Visually Hidden Preheader Text : BEGIN -->
-            <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">@foreach($introLines as $line){{ $line }}@endforeach</div>
+            <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">Thanks for using our service we love having you as our customer. <br> We would like to inform you that your subscription order <strong>{{ $subscription->code }}</strong> placed on {{ $subscription->created_at}} has been approved. You can now enjoy your premium account.</div>
             <!-- Visually Hidden Preheader Text : END -->
             <!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
             <!-- Preview Text Spacing Hack : BEGIN -->
@@ -474,13 +549,13 @@
             Set the email width. Defined in two places:
             1. max-width for all clients except Desktop Windows Outlook, al lowing the email to squish on narrow but never go wider than 600px.
             2. MSO tags for Desktop Windows Outlook enforce a 600px width.
-        -->
+            -->
             <div width="100%" style="width: 100%; max-width: 680px; min-height: 700px; margin: 0 auto; padding-top: 20px; padding-bottom: 20px;" class="email-container">
                 <!--[if mso]>
-            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600">
-            <tr>
-            <td>
-            <![endif]-->
+                <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600">
+                <tr>
+                <td>
+                <![endif]-->
                 <!-- Email Body : BEGIN -->
                 <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto; padding: 40px;">
                     <!-- Email Header : BEGIN -->
@@ -488,57 +563,40 @@
                     <td style="padding: 20px 0; text-align: center">
                         <img src="https://via.placeholder.com/200x50" width="200" height="50" alt="alt_text" border="0" style="height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
                     </td>
-                </tr> -->
+                     </tr> -->
                     <!-- Email Header : END -->
                     <!-- Logo, Flush : BEGIN -->
-                    {{-- <tr>
-                        <td style="background-color: #ffffff; padding-top: 20px; padding-left: 30px; padding-right: 30px; padding-bottom: 0px;" class="td__content">
-                            <img src="{{ asset('imgs/siteicons/brand-logo.png') }}" width="100" alt="Calamba Entrep" border="0" style="object-fit: contain;" class="g-img">
-                        </td>
-                    </tr> --}}
                     <!-- Logo, Flush : END -->
                     <!-- Hero Image, Flush : BEGIN -->
                     <tr>
                         <td style="background-color: #ffffff;">
-                            <img src="{{ asset('imgs/siteicons/password-reset.jpg') }}" alt="Successfully Registered" border="0" style="width: 100%; height: auto; display: block; object-fit: contain;" class="g-img">
+                            <img src="{{ asset('imgs/siteicons/approved-subscription.jpg') }}" width="680" height="" alt="Subscription Approved" border="0" style="width: 100%; height: auto; display: block; object-fit: contain;" class="g-img">
                         </td>
                     </tr>
                     <!-- Hero Image, Flush : END -->
                     <!-- Message : BEGIN -->
                     <tr>
-                        <td align="left" valign="top" style="width:100%; font-size:0; background-color: #ffffff; padding: 30px 30px 20px;" class="td__block row__desktop_col_mobile td__content">
+                        <td align="left" valign="top" style="font-size:0; background-color: #ffffff; padding: 30px 30px 20px;" class="td__block row__desktop_col_mobile td__content">
                             <!--[if mso]>
-                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
-                        <tr>
-                        <td valign="top" width="220">
-                        <![endif]-->
-                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="width:100% !important;">
+                            <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="660">
+                            <tr>
+                            <td valign="top" width="220">
+                            <![endif]-->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                                 <tr>
-                                    <td style="width:100% !important;">
+                                    <td style="">
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
                                             <tr>
                                                 <td valign="top" style="width:100%;">
-                                                    {{-- Greeting --}}
-                                                    @if (! empty($greeting))
-                                                    <p class="text--black" style="word-break: break-all;">{{ $greeting }}</p>
-                                                    @else
-                                                    @if ($level === 'error')
-                                                    <p class="text--black" style="word-break: break-all;">@lang('Whoops!')</p>
-                                                    @else
-                                                    <p class="text--black" style="word-break: break-all;">@lang('Hello!')</p>
-                                                    @endif
-                                                    @endif
-                                                    <br>
-                                                    @foreach ($introLines as $line)
-                                                    <p class="text--black" style="word-break: break-all;">{{ $line }} </p>
-                                                    <br>
-                                                    @endforeach
-                                                    <br>
-                                                    <a class="btn--green" href="{{ $actionUrl }}">{{ $actionText }}</a>
-                                                    <br><br><br>
-                                                    @foreach ($outroLines as $line)
-                                                    <p class="text--black">{{ $line }}</p>
-                                                    @endforeach
+                                                    <p class="text--black"><strong>Hello {{ $subscription->user->first_name }},</strong></p><br>
+                                                    <p class="text--black">Thanks for using our service we love having you as our customer.</p> <br>
+                                                    <p class="text--black">We would like to inform you that your subscription order <strong>{{ $subscription->code }}</strong> placed on {{ $subscription->created_at}} has been approved. You can now enjoy your premium account.</p> <br>
+                                                    <p class="text--black"> Login now and enjoy using our website's premium features</p> <br><br>
+                                                    <a class="btn--green" href="{{ route('user.profile') }}">Login</a>
+                                                    <br><br> <br>
+                                                    <p class="text--black">
+                                                        If there’s any issue we can help with, please contact our support team at industrialengineeringbook@gmail.com. <br> You can also find us on live chat right from our website.
+                                                    </p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -555,18 +613,6 @@
                             <p class="text--black" style="font-weight: 600;">{{ config('app.name') }}</p>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td align="left" valign="top" style="font-size:0; background-color: #ffffff;" class="td__content td__closing_msg">
-                            @isset($actionText)
-                            <p class="text--black" style="word-break: break-all;">
-                                If you’re having trouble clicking the {{ $actionText }} button, copy and paste <br> the URL below
-                                into your web browser:<a class="hyperlink" href="{{ $actionUrl }}">[{{ $displayableActionUrl }}]</a>
-                            </p>
-                            @endisset
-                        </td>
-                    </tr>
-
                     <!-- CLOSING MESSAGE : END -->
                     <!-- Credits : BEGIN -->
                     <tr>
@@ -590,3 +636,4 @@
     </body>
 
 </html>
+
