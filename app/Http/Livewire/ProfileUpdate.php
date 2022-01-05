@@ -79,7 +79,7 @@ class ProfileUpdate extends Component
 
             Storage::delete('public/avatars/' . $this->prevAvatar);
             $avatarName = time() . '.' . $this->avatar->getClientOriginalName();
-            $this->avatar->storeAs('public/avatars/', $avatarName);
+            $this->avatar->storeAs('storage/avatars/', $avatarName);
             $data = array_merge($data, [
                 'avatar' => $avatarName
             ]);

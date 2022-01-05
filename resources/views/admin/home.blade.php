@@ -133,7 +133,11 @@
                                         </span>
                                         <br>
                                         <span class="m-widget4__sub">
+                                            @if($totalUsers != 0)
                                             {{ $totalBasicAccount / $totalUsers * 100 }}% of total users
+                                            @else
+                                            0% of total users
+                                            @endif
                                         </span>
                                     </div>
                                     <span class="m-widget4__ext">
@@ -153,7 +157,11 @@
                                         </span>
                                         <br>
                                         <span class="m-widget4__sub">
+                                            @if($totalUsers != 0)
                                             {{ $totalPremiumAccount / $totalUsers * 100 }}% of total users
+                                            @else
+                                            0% of total users
+                                            @endif
                                         </span>
                                     </div>
                                     <span class="m-widget4__ext">
