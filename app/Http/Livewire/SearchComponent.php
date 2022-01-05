@@ -20,7 +20,7 @@ class SearchComponent extends Component
     public function loadMore()
     {
         $this->limitPerPage += 5;
-        $this->terms = Term::search($this->term)->where('is_hidden', 0)->latest()->limit($this->limitPerPage)->get();
+        $this->terms = Term::search($this->term)->latest()->limit($this->limitPerPage)->get();
          sleep(1.5);
     }
 
@@ -57,8 +57,8 @@ class SearchComponent extends Component
     }
 
     private function continueSearching(){
-        $this->terms = Term::search($this->term)->where('is_hidden', 0)->latest()->limit($this->limitPerPage)->get();
-        $this->totalTerms = Term::search($this->term)->where('is_hidden', 0)->latest()->count();
+        $this->terms = Term::search($this->term)->latest()->limit($this->limitPerPage)->get();
+        $this->totalTerms = Term::search($this->term)->latest()->count();
         $this->noFound = count($this->terms) == 0 ? 1: 0;
         $this->termsCount = count($this->terms);
     }

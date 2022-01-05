@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsHiddenToTermsTable extends Migration
+class AddIsPremiumToTermsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddIsHiddenToTermsTable extends Migration
     public function up()
     {
         Schema::table('terms', function (Blueprint $table) {
-            $table->boolean('is_hidden')->default(false);
+            $table->boolean('is_premium')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ class AddIsHiddenToTermsTable extends Migration
     public function down()
     {
         Schema::table('terms', function (Blueprint $table) {
-            $table->boolean('is_hidden')->default(false);
+            $table->boolean('is_premium')->default(false);
         });
     }
 }

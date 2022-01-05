@@ -99,7 +99,7 @@
                         <div class="m-form__group m-form__group--inline">
                             <div class="m-form__label">
                                 <label>
-                                    Status
+                                    Type
                                 </label>
                             </div>
                             <div class="m-form__control">
@@ -108,10 +108,10 @@
                                         All
                                     </option>
                                     <option value=0>
-                                        Active
+                                        Basic Words
                                     </option>
                                     <option value=1>
-                                        Hidden
+                                        Premium Words
                                     </option>
                                 </select>
                             </div>
@@ -123,7 +123,7 @@
                         <div class="m-form__group m-form__group--inline">
                             <div class="m-form__label">
                                 <label>
-                                    Type
+                                    Status
                                 </label>
                             </div>
                             <div class="m-form__control">
@@ -210,7 +210,7 @@
                     <th>#</th>
                     <th>Term</th>
                     <th>Description</th>
-                    <th>Status</th>
+                    <th>Type</th>
                     <th>Date Created</th>
                     <th>Date Updated</th>
                     <th>Actions</th>
@@ -230,10 +230,10 @@
                         {{ $term->truncatedDescription() }}
                     </td>
                     <td class="align-middle">
-                        @if($term->is_hidden)
-                        <span class="m-badge m-badge--warning m-badge--wide">Hidden</span>
+                        @if($term->is_premium)
+                        <span class="m-badge m-badge--success m-badge--wide">Premium</span>
                         @else
-                        <span class="m-badge m-badge--success m-badge--wide">Active</span>
+                        <span class="m-badge m-badge--warning m-badge--wide">Basic</span>
                         @endif
                     </td>
                     <td class="align-middle">{{ $term->created_at }}</td>
@@ -307,7 +307,7 @@
                             </label>
                             <div class="@error('description') has-danger @enderror">
                                <div wire:ignore>
-                                <textarea type="text" wire:model="answer" class="summernote" rows="10" class="form-control m-input @error('description') border-danger @enderror" id="description" placeholder="description">{{ $description }}</textarea>
+                                <textarea type="text" wire:model="description" rows="10" class="form-control m-input @error('description') border-danger @enderror" id="description" placeholder="description">{{ $description }}</textarea>
                                </div>
                                 @error('description')
                                 <div class="form-control-feedback">{{ $message }}</div>
@@ -371,8 +371,8 @@
 
                         <div class="form-group m-form__group">
                             <label class="m-checkbox">
-                                <input type="checkbox" name="is_hidden_by_admin" wire:model="is_hidden">
-                                    Hide from the website
+                                <input type="checkbox" name="is_premium" wire:model="is_premium">
+                                    Mark as premium word
                                 <span></span>
                             </label>
                         </div>
@@ -443,7 +443,7 @@
 @push('scripts')
 <script src="{{ asset('admin/assets/demo/default/custom/components/base/bootstrap-notify.js') }}" type="text/javascript"></script>
 <script>
-jQuery(document).ready(function(){$(".summernote").summernote({height:150,callbacks:{onChange:function(contents,$editable){@this.set('description', contents);var n=$(".note-editable").text().length;$("#total-caracteres").text(n)},onInit:function(e){var t=$(".note-editable").text().length;$("#total-caracteres").text(t)}}})}),window.addEventListener("close_modal",e=>{$("#term-modal-add").modal("hide")}),window.addEventListener("open_modal",e=>{$("#term-modal-add").modal("show")}),window.addEventListener("notification",e=>{$.notify({message:e.detail.message},{type:e.detail.type,timer:500,allow_dismiss:!0,animate:{enter:"animated bounce",exit:"animated bounce"}})});Livewire.on('reset-summernote', () => {$('.summernote').summernote('reset');});
+window.addEventListener("close_modal",e=>{$("#term-modal-add").modal("hide")}),window.addEventListener("open_modal",e=>{$("#term-modal-add").modal("show")}),window.addEventListener("notification",e=>{$.notify({message:e.detail.message},{type:e.detail.type,timer:500,allow_dismiss:!0,animate:{enter:"animated bounce",exit:"animated bounce"}})});Livewire.on('reset-summernote', () => {$('.summernote').summernote('reset');});
 Livewire.on('summernote-edit', (value) => {$('.summernote').summernote('code', value);});
 Livewire.on('summernote-edit', (value) => {$('.summernote').summernote('code', value);});
 const loading = document.getElementById('processing');

@@ -30,10 +30,17 @@
                 <img src="{{ $item->image ? asset('storage/term_images/' . $item->image) : asset('imgs/logo_v2.png') }}" class="w-28 md:w-48 h-28 md:h-48 object-cover" alt="">
                 <div>
                     <h1 class="subtitle__text">{{ $item->term }}</h1>
-                    <p class="font-light lowercase line-clamp-2 mt-2">
-                        {{ strip_tags($item->description) }}
+                    <p class="font-light normal-case mt-2">
+                        {{ Str::limit(strip_tags($item->description), 150) }}
                     </p>
+                    @if(!auth()->user()->is_premium && $item->is_premium)
+                    <button class="mt-4 text-[13px] flex items-center space-x-2">
+                        <span class="!text-yellow-500">Premium Word</span>
+                        <svg class="!text-yellow-500 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </button>
+                    @else
                     <button class="!text-green-500 underline mt-4 text-[13px]" wire:click="readMore({{ $item->id }})">Read More</button>
+                    @endif
                 </div>
             </div>
             @endforeach

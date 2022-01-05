@@ -28,7 +28,7 @@ class TermsTable extends Component
     public $term;
     public $description;
     public $image;
-    public $is_hidden = 0;
+    public $is_premium = 0;
 
     protected $queryString = ['type'];
 
@@ -68,7 +68,7 @@ class TermsTable extends Component
         $this->editingTerm = $term;
         $this->term = $term->term;
         $this->description = $term->description;
-        $this->is_hidden = $term->is_hidden;
+        $this->is_premium = $term->is_premium;
         $this->image = $term->image;
         $this->emit('summernote-edit',$term->description);
     }
@@ -88,7 +88,7 @@ class TermsTable extends Component
         $term = Term::create([
         'term'=>$this->term,
         'description'=>$this->description,
-        'is_hidden'=>$this->is_hidden,
+        'is_premium'=>$this->is_premium,
         'image'=>$imageName,
         ]);
         if($term){
@@ -113,7 +113,7 @@ class TermsTable extends Component
         $term = $this->editingTerm->update([
         'term'=>$this->term,
         'description'=>$this->description,
-        'is_hidden'=>$this->is_hidden,
+        'is_premium'=>$this->is_premium,
         'image'=>$imageName,
         ]);
         if($term){
@@ -166,9 +166,9 @@ class TermsTable extends Component
             }
         } else {
             if ($this->type == 1) {
-                $terms = Term::search($this->search)->orderBy($this->order_by, $this->order)->where('is_hidden', $this->status)->paginate($this->perPage);
+                $terms = Term::search($this->search)->orderBy($this->order_by, $this->order)->where('is_premium', $this->status)->paginate($this->perPage);
             } else {
-                $terms = Term::search($this->search)->orderBy($this->order_by, $this->order)->onlyTrashed()->where('is_hidden', $this->status)->paginate($this->perPage);
+                $terms = Term::search($this->search)->orderBy($this->order_by, $this->order)->onlyTrashed()->where('is_premium', $this->status)->paginate($this->perPage);
             }
         }
         return view('livewire.terms-table', compact('terms'));

@@ -6,8 +6,8 @@
                   <img src="{{ $currentTerm['image'] ? asset('storage/term_images/' . $currentTerm['image']) : asset('imgs/logo_v2.png') }}" class="w-full object-cover" alt="">
               </div>
               <div class="flex-1">
-                  <h1 class="subtitle__text">{{ $currentTerm['term'] }}</h1>
-                  <p class="font-light lowercase mt-2">
+                  <h1 class="app__subtitle">{{ $currentTerm['term'] }}</h1>
+                  <p class="font-light normal-case mt-4 md:text-[20px]">
                       {{ strip_tags($currentTerm['description']) }}
                   </p>
               </div>
