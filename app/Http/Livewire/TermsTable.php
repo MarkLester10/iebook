@@ -29,6 +29,7 @@ class TermsTable extends Component
     public $description;
     public $image;
     public $is_premium = 0;
+    public $image_link;
 
     protected $queryString = ['type'];
 
@@ -36,6 +37,7 @@ class TermsTable extends Component
         'term' => ['required','string','max:50'],
         'description' => ['required','string'],
         'image' => ['nullable', 'sometimes'],
+        'image_link' => ['nullable', 'sometimes'],
     ];
 
     public function paginationView()
@@ -70,6 +72,7 @@ class TermsTable extends Component
         $this->description = $term->description;
         $this->is_premium = $term->is_premium;
         $this->image = $term->image;
+        $this->image_link = $term->image_link;
         $this->emit('summernote-edit',$term->description);
     }
 
@@ -89,6 +92,7 @@ class TermsTable extends Component
         'term'=>$this->term,
         'description'=>$this->description,
         'is_premium'=>$this->is_premium,
+        'image_link'=>$this->image_link,
         'image'=>$imageName,
         ]);
         if($term){
@@ -114,6 +118,7 @@ class TermsTable extends Component
         'term'=>$this->term,
         'description'=>$this->description,
         'is_premium'=>$this->is_premium,
+        'image_link'=>$this->image_link,
         'image'=>$imageName,
         ]);
         if($term){

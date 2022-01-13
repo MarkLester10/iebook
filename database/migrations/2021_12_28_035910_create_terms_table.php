@@ -17,6 +17,7 @@ class CreateTermsTable extends Migration
             $table->id();
             $table->string('term');
             $table->longText('description');
+            $table->longText('image_link')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

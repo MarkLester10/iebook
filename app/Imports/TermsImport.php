@@ -17,6 +17,7 @@ class TermsImport implements ToModel
         return new Term([
             'term' => $row[0],
             'description' => $row[1],
+            'image_link' => $row[2],
         ]);
     }
 }

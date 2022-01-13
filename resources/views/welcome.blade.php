@@ -59,15 +59,24 @@
     </section>
 
     <!-- Beer of the Week -->
+    @if($termOfTheDay)
     <section class="beer__of__the__week">
       <div class="app__container">
         <div class="beer__model">
           <div class="beer__img">
+            @if($termOfTheDay->image_link)
+            <img
+              class="w-full h-full object-cover"
+              src="{{ $termOfTheDay->image_link }}"
+              alt="{{ $termOfTheDay->term }}"
+            />
+            @else
             <img
               class="w-full h-full object-cover"
               src="{{ $termOfTheDay->image ? asset('storage/term_images/' . $termOfTheDay->image) : asset('imgs/logo_v2.png') }}"
-              alt="Fishbone Diagram"
+              alt="{{ $termOfTheDay->term }}"
             />
+            @endif
           </div>
           <div class="beer__description">
             <h1 class="app__subtitle uppercase">{{ $termOfTheDay->term }}</h1>
@@ -79,6 +88,7 @@
         </div>
       </div>
     </section>
+    @endif
 
   <!-- Store Address -->
   <section class="store__address">

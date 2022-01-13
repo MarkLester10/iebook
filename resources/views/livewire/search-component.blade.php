@@ -27,7 +27,11 @@
     <div class="bg-white p-6 mt-10 space-y-8 w-full">
             @foreach($terms as $item)
             <div class="border flex p-4 md:p-6 md:space-x-8 space-x-6 w-full">
+                @if($item->image_link)
+                <img src="{{ $item->image_link }}" class="w-28 md:w-48 h-28 md:h-48 object-cover" alt="">
+                @else
                 <img src="{{ $item->image ? asset('storage/term_images/' . $item->image) : asset('imgs/logo_v2.png') }}" class="w-28 md:w-48 h-28 md:h-48 object-cover" alt="">
+                @endif
                 <div>
                     <h1 class="subtitle__text">{{ $item->term }}</h1>
                     <p class="font-light normal-case mt-2">

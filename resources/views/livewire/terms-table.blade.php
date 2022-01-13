@@ -221,7 +221,11 @@
                 <tr class="text-nowrap">
                     <td class="align-middle">{{ ($terms->currentpage()-1) * $terms->perpage() + $loop->index + 1 }}</td>
                     <td class="align-middle p-image d-flex">
+                        @if($term->image_link)
+                        <img src="{{ $term->image_link }}" style="width:60px; height:60px; object-fit:cover;" alt="">
+                        @else
                         <img src="{{ $term->image ? asset('storage/term_images/' . $term->image) : asset('imgs/logo_v2.png') }}" style="width:60px; height:60px; object-fit:cover;" alt="">
+                        @endif
                         <p class="ml-2 m--font-boldest m-0 d-flex align-items-center">
                             {{ $term->term }}
                         </p>
@@ -301,6 +305,8 @@
                         </div>
 
 
+
+
                         <div class="form-group m-form__group">
                             <label for="answer">
                                 Description <span class="text-danger">*</span>
@@ -313,6 +319,24 @@
                                 <div class="form-control-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
+
+                        <div class="form-group m-form__group">
+                            <label for="term">
+                                Image Link
+                            </label>
+                            <div class="@error('image_link') has-danger @enderror">
+                                <input type="text" wire:model="image_link" class="form-control m-input @error('image_link') border-danger @enderror" id="image_link" placeholder="Image Link" >
+                                @error('image_link')
+                                <div class="form-control-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group">
+                            <label for="term">
+                                <strong>OR</strong>
+                            </label>
                         </div>
 
                         <div class="form-group m-form__group">

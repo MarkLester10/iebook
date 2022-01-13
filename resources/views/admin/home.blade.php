@@ -259,6 +259,7 @@
                     </div>
                     <!--end:: Widgets/Activity-->
                 </div>
+                @if($termOfTheDay)
                 <div class="col-xl-4">
                     <!--begin:: Widgets/Blog-->
                     <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
@@ -274,7 +275,11 @@
                         <div class="m-portlet__body">
                             <div class="m-widget19">
                                 <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
+                                    @if($termOfTheDay->image_link)
+                                    <img src="{{ $termOfTheDay->image_link }}" alt="">
+                                    @else
                                     <img src="{{ $termOfTheDay->image ? asset('storage/term_images/' . $termOfTheDay->image) : asset('imgs/logo_v2.png') }}" alt="">
+                                    @endif
                                     <h3 class="m-widget19__title m--font-light">
                                        {{ $termOfTheDay->term }}
                                     </h3>
@@ -298,6 +303,7 @@
                     </div>
                     <!--end:: Widgets/Blog-->
                 </div>
+                @endif
             </div>
             <!--End::Main Portlet-->
 
